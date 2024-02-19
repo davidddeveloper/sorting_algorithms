@@ -11,5 +11,25 @@
  */
 void bubble_sort(int *array, size_t size)
 {
+	int temp;
+	bool is_swap;
 
+	for (int i = 0; i < (size - 1); i++)
+	{
+		is_swap = false;
+		for (int j = 0; j < (size - 1 - i); j++)
+		{
+			if (array[j] > array[j + 1])
+			{
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+
+				print_array(array, size);
+				is_swap = true;
+			}
+		}
+		if (is_swap == false)
+			break;
+	}
 }
