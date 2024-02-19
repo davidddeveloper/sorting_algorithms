@@ -4,7 +4,7 @@ A pair group project on sorting algorithms.
 ## Contributors
 [David Conteh](https://github.com/davidddeveloper)
 
-[Mohammed](https://github.com/mdouaour)
+[mohammed Yassine Douaouria](https://github.com/mdouaour)
 
 
 ## Data Structure and Functions
