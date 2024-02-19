@@ -12,12 +12,12 @@
 void bubble_sort(int *array, size_t size)
 {
 	int temp;
-	bool is_swap;
+	int is_swap;
 	size_t i, j;
 
 	for (i = 0; i < (size - 1); i++)
 	{
-		is_swap = false;
+		is_swap = 0;
 		for (j = 0; j < (size - 1 - i); j++)
 		{
 			if (array[j] > array[j + 1])
@@ -27,10 +27,10 @@ void bubble_sort(int *array, size_t size)
 				array[j + 1] = temp;
 
 				print_array(array, size);
-				is_swap = true;
+				is_swap = 1;
 			}
 		}
-		if (is_swap == false)
+		if (is_swap == 0)
 			break;
 	}
 }
