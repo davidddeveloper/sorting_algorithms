@@ -12,39 +12,41 @@
 
 void quick_sort(int *array, size_t size)
 {
-	int loc;
+	int pivot_index;
 	int lo = 0;
 	int hi = size -1;
 
-	if (lo < hi)
-	{
-		loc = partition(array, lo, hi);
-		quick_sort(array, loc);
-		quick_sort(array + loc + 1, size - loc - 1);
-	}
+	if (size < 2)
+		return;
+
+	pivot_index = partition(array, lo, hi, array, size);
+	quick_sort(array, pivot_index);
+	quick_sort(array + pivot_index + 1, hi - pivot_index);
 }
 
-int partition(int array[], int lo, int hi)
+int partition(int array[], int lo, int hi, const int *original_array, size_t size)
 {
-	int pi, start, end;
+	int pivot, i, j;
 
-	start = lo;
-	pi = end = hi - 1;
+	pivot = array[hi];
+	i = lo - 1;
 
-	while (start < end)
+	for (j = lo; j <= hi - 1; j++)
 	{
-		while (start < pi)
-			start++;
-
-		while (end > pi)
-			end--;
-
-		if (start < end)
-			swap(&(array[start]), &(array[end]));
+		if (array[j] < pivot)
+		{
+			i++;
+			swap(&(array[i]), &(array[j]));
+		}
 	}
 
-	swap(&(array[pi]), &(array[end]));
-	return (end);
+	if ((i + 1) != hi)
+	{
+		swap(&(array[i + 1]), &(array[hi]));
+		print_array(original_array, size);
+	}
+
+	return (i + 1);
 }
 
 void swap(int *a, int *b)
