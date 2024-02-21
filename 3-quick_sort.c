@@ -77,7 +77,7 @@ int partition(int array[], int lo, int hi, size_t size)
 	if ((i + 1) != hi)
 	{
 		swap(&array[i + 1], &array[hi]);
-		print_array(array, size);	
+		print_array(array, size);
 	}
 
 	return (i + 1);
