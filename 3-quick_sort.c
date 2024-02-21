@@ -10,10 +10,8 @@
  * Return: nothing
  */
 
-void quick_sort(int *array, size_t size)
+void quick_sort_helper(int *array, size_t size, const int *original_array)
 {
-	int *keep_track = array;
-	int *the_array = array;
 	int pivot_index;
 	int lo = 0;
 	int hi = size -1;
@@ -21,9 +19,15 @@ void quick_sort(int *array, size_t size)
 	if (size < 2)
 		return;
 
-	pivot_index = partition(the_array, lo, hi, keep_track, size);
-	quick_sort(the_array, pivot_index - lo);
-	quick_sort(the_array + pivot_index + 1, hi - pivot_index);
+	pivot_index = partition(array, lo, hi, original_array, size);
+	quick_sort_helper(array, pivot_index - lo, original_array);
+	quick_sort_helper(array + pivot_index + 1, hi - pivot_index, original_array);
+}
+
+void quick_sort(int *array, size_t size)
+{
+	int *original_array = array;
+	quick_sort_helper(array, size, original_array);
 }
 
 int partition(int array[], int lo, int hi, const int *original_array, int size)
