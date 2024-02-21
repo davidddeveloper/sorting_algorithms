@@ -12,6 +12,8 @@
 
 void quick_sort(int *array, size_t size)
 {
+	int *keep_track = array;
+	int *the_array = array;
 	int pivot_index;
 	int lo = 0;
 	int hi = size -1;
@@ -19,32 +21,30 @@ void quick_sort(int *array, size_t size)
 	if (size < 2)
 		return;
 
-	pivot_index = partition(array, lo, hi, array, size);
-	quick_sort(array, pivot_index);
-	quick_sort(array + pivot_index + 1, hi - pivot_index);
+	pivot_index = partition(the_array, lo, hi, keep_track, size);
+	quick_sort(the_array, pivot_index - lo);
+	quick_sort(the_array + pivot_index + 1, hi - pivot_index);
 }
 
-int partition(int array[], int lo, int hi, const int *original_array, size_t size)
+int partition(int array[], int lo, int hi, const int *original_array, int size)
 {
 	int pivot, i, j;
 
 	pivot = array[hi];
 	i = lo - 1;
 
-	for (j = lo; j <= hi - 1; j++)
+	for (j = lo; j <= hi; j++)
 	{
 		if (array[j] < pivot)
 		{
 			i++;
 			swap(&(array[i]), &(array[j]));
+			print_array(original_array, size);
 		}
 	}
 
-	if ((i + 1) != hi)
-	{
-		swap(&(array[i + 1]), &(array[hi]));
-		print_array(original_array, size);
-	}
+	swap(&(array[i + 1]), &(array[hi]));
+	print_array(original_array, size);
 
 	return (i + 1);
 }
