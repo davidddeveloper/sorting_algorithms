@@ -36,12 +36,13 @@ void quick_sort(int *array, size_t size)
 	int hight = (int)(size - 1);
 	int pi;
 
+	if (array == NULL || size == 0)
+		return;
 	if (low < hight)
 	{
 		pi = partition(array, low, hight, size);
 		quick_sort_helper(array, low, pi - 1, size);
 		quick_sort_helper(array, pi + 1, hight, size);
-		print_array(array, size);
 	}
 }
 
